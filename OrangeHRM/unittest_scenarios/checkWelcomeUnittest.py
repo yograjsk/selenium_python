@@ -11,7 +11,30 @@ class CheckWelcome:
         self.location = '../drivers/'
         # self.driver = webdriver.Chrome(executable_path=self.location + 'chromedriver.exe')
 
-    def setup(self):
+    @classmethod
+    def setUpClass(cls):
+        print("launch application login page")
+
+    @classmethod
+    def tearDownClass(cls):
+        print("close the application page")
+
+    @classmethod
+    def setUp(self):
+        print("logining into the application")
+
+    @classmethod
+    def tearDown(self):
+        print("logining out of the application")
+
+    def test_checkWelcome(self):
+        # print("login")
+        print("checking welcome user text")
+        # print("logout")
+
+
+
+    def setUp(self):
         # url = 'https://opensource-demo.orangehrmlive.com/index.php/auth/login'
         # location = '../drivers/'
         self.driver = webdriver.Chrome(executable_path=self.location + 'chromedriver.exe')
