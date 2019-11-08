@@ -22,7 +22,7 @@ class CheckWelcome:
         # url = 'https://opensource-demo.orangehrmlive.com/index.php/auth/login'
         # location = '../drivers/'
         self.driver = webdriver.Chrome(executable_path=self.location + 'chromedriver.exe')
-        # self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(5)
         self.driver.get(self.url)
         # time.sleep(2)
 
@@ -39,11 +39,11 @@ class CheckWelcome:
 
     def logout(self):
         # time.sleep(2)
-        wait = WebDriverWait(self.driver, 10)
-        element = wait.until(EC.element_to_be_clickable(self.driver.find_element_by_id("welcome")))
-        element.click()
+        # wait = WebDriverWait(self.driver, 10)
+        # # element = wait.until(EC.element_to_be_clickable(self.driver.find_element_by_id("welcome")))
+        # # element.click()
         # wait.until(EC.element_to_be_clickable(self.driver.find_element(By.ID, "welcome"))).click()
-        # self.driver.find_element_by_id("welcome").click()
+        self.driver.find_element_by_id("welcome").click()
         # self.driver.find_element(By.ID, "welcome").click()
         # time.sleep(2)
         self.driver.find_element_by_link_text("Logout").click()

@@ -1,29 +1,31 @@
 from selenium import webdriver
 import time
+import unittest
 
 class CheckWelcome:
 
 
     def __init__(self):
-        self.username = "Admin"
+        self.username = "admin"
         self.password = "admin123"
         self.url = 'https://opensource-demo.orangehrmlive.com/index.php/auth/login'
         self.location = '../drivers/'
         # self.driver = webdriver.Chrome(executable_path=self.location + 'chromedriver.exe')
 
-    def setup(self):
+
+    def setUp(self):
         # url = 'https://opensource-demo.orangehrmlive.com/index.php/auth/login'
         # location = '../drivers/'
         self.driver = webdriver.Chrome(executable_path=self.location + 'chromedriver.exe')
         self.driver.get(self.url)
         time.sleep(2)
 
-    def login(self):
+    def test_login(self):
         self.driver.find_element_by_name('txtUsername').send_keys('Admin')
         self.driver.find_element_by_name('txtPassword').send_keys('admin123')
         self.driver.find_element_by_name('Submit').click()
 
-    def checkWelcome(self):
+    def test_checkWelcome(self):
         welcomeText = self.driver.find_element_by_id('welcome').text
         print(welcomeText)
         assert "Welcome "+self.username in welcomeText
