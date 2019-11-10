@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+
 import time
 
 class CheckWelcome:
@@ -36,6 +37,11 @@ class CheckWelcome:
         welcomeText = self.driver.find_element_by_id('welcome').text
         print(welcomeText)
         assert "Welcome "+self.username in welcomeText
+        # self.driver.save_screenshot("C:/Users/USER/PycharmProjects/sample/OrangeHRM/welcome.png")
+        self.driver.save_screenshot("../welcome_1.png")
+        # assert.assert
+
+
 
     def logout(self):
         # time.sleep(2)

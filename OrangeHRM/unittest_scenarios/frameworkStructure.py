@@ -46,6 +46,7 @@ class FWstructure(unittest.TestCase):
         welcomeText = self.driver.find_element_by_id('welcome').text
         print(welcomeText)
         assert "Welcome "+self.username in welcomeText
+        # self.driver.save_screenshot("screenshots/welcome.png")
 
     def test_create_user(self):
         print("creating user")
