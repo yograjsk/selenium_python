@@ -1,5 +1,5 @@
 class NewSmartphone:
-
+    mobileGadget = "smartphone"
     def __init__(self):
         self.name = "iphone"
         self.os = 'ios'

@@ -16,7 +16,6 @@ class ExplicitWait():
             location = '../drivers/'
             driver = webdriver.Chrome(executable_path=location + 'chromedriver.exe')
             # driver.implicitly_wait(5)
-            cf = newCommonfunctions(driver)
 
             driver.get(url)
             # driver.find_element_by_name('txtUsername').send_keys('Admin')
