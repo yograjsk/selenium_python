@@ -1,6 +1,6 @@
 '''
 Assignment:
-
+Create class Student with instance variables
 '''
 
 
