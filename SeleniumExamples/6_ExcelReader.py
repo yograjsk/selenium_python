@@ -9,6 +9,11 @@ from selenium.webdriver.common.by import By
 
 class ExcelReader(unittest.TestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        cls.driver = webdriver.Chrome(executable_path='drivers/chromedriver.exe')
+        cls.driver.implicitly_wait(5)
+
     def _test_1readExcel(self):
 
         data = pd.read_excel("websites.xlsx")
@@ -24,45 +29,14 @@ class ExcelReader(unittest.TestCase):
 
     def test_2AccessDiffSites(self):
         data = pd.read_excel("websites.xlsx")
-        name = data['name'].tolist()
-        url = data['url'].tolist()
+        name = data['NAME'].tolist()
+        url = data['URL'].tolist()
         print("\nname\n",name,"\nurl\n",url)
 
         # for a in name:
         #     print(a)
         for (n, u) in zip (name, url):
-            print("sitename",n,"url",u)
-
-
-
-
-    # def _test_handleSimpleAlert(self):
-    #     self.driver.get("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html")
-    #     element = self.driver.find_element(By.XPATH, "//button[@class='btn btn-default']")
-    #     element.click()
-    #     alert = self.driver.switch_to.alert
-    #     alertMsg = alert.text
-    #     print(alertMsg)
-    #     alert.accept()
-    #
-    # def _test_2handleSimpleAlert(self):
-    #     list = [True, False]
-    #     # accept = True
-    #     for condition in list:
-    #
-    #         self.driver.get("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html")
-    #         element = self.driver.find_element(By.XPATH, "//button[@class='btn btn-default btn-lg']")
-    #         element.click()
-    #         alert = self.driver.switch_to.alert
-    #         alertMsg = alert.text
-    #         print(alertMsg)
-    #         if condition:
-    #             alert.accept()
-    #             print("Accepted Alert")
-    #         else:
-    #             alert.dismiss()
-    #             print("Cancelled Alert")
-    #         buttonPressInfo = self.driver.find_element(By.ID, "confirm-demo").text
-    #         print(buttonPressInfo)
-
+            print("opening sitename",n,"url",u)
+            self.driver.get(u)
+            print("title is:",self.driver.title)
 
