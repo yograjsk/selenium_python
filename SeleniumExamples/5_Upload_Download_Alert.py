@@ -22,7 +22,7 @@ class Upload_Alert_etc_TC(unittest.TestCase):
         chop.add_argument("--disable-popup-blocking")
 
         # chop.add_argument("--window-size=1920,1080")
-        chop.add_argument("--start-maximized")
+        # chop.add_argument("--start-maximized")
         # chop.add_argument("--headless")
         chop.add_experimental_option("prefs", {
             "download.prompt_for_download": True,
@@ -51,7 +51,7 @@ class Upload_Alert_etc_TC(unittest.TestCase):
         element.send_keys(os.getcwd()+"/importData.csv")
         self.driver.find_element(By.ID, "btnSave").click()
 
-    def test_download_template(self):
+    def _test_download_template(self):
         self.driver.get("https://opensource-demo.orangehrmlive.com/index.php/admin/pimCsvImport")
         element = self.driver.find_element(By.CLASS_NAME, 'download')
         element.click()
@@ -75,7 +75,7 @@ class Upload_Alert_etc_TC(unittest.TestCase):
         alert.accept()
 
     def _test_2handleSimpleAlert(self):
-        list = [True, False]
+        list = [False, True]
         # accept = True
         for condition in list:
 
@@ -85,7 +85,11 @@ class Upload_Alert_etc_TC(unittest.TestCase):
             alert = self.driver.switch_to.alert
             alertMsg = alert.text
             print(alertMsg)
+            # if (condition - it has value of either true or falce)
+            # if condition == True:
+            # if condition is True:
             if condition:
+            # if condition:
                 alert.accept()
                 print("Accepted Alert")
             else:
@@ -94,31 +98,32 @@ class Upload_Alert_etc_TC(unittest.TestCase):
             buttonPressInfo = self.driver.find_element(By.ID, "confirm-demo").text
             print(buttonPressInfo)
 
+    def test_3handleSimpleAlert(self):
+        list = [False, True]
+        # accept = True
+        for condition in list:
+
+            self.driver.get("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html")
+            element = self.driver.find_element(By.XPATH, "//button[@class='btn btn-default btn-lg' and text()='Click for Prompt Box']")
+            element.click()
+            alert1 = self.driver.switch_to.alert
+            # alert = self.driver.switch_to.alert
+            # time.sleep(2)
+            # alertMsg = alert.text
+            # print(alertMsg)
+            alert1.send_keys("Selenium Python script execution")
+            alertMsg = alert1.text
+            print(alertMsg)
+            if condition:
+                alert1.accept()
+                print("Accepted Alert")
+            else:
+                alert1.dismiss()
+                print("Cancelled Alert")
+            buttonPressInfo = self.driver.find_element(By.ID, "confirm-demo").text
+            print(buttonPressInfo)
 
 
 
 
 
-'''
-excel file - fetch, and upload (browser), and download
-dropdown - loops associated
-popup window, alert
-Jenkins/Maven
-Report HTML
-executing javascript
-
-
-
-'''
-
-# profile = webdriver.FirefoxProfile()
-# profile.set_preference('browser.download.folderList', 2)
-# # profile.set_preference('browser.download.manager.showWhenStarting', False)
-# # profile.set_preference('browser.download.dir', '/temp')
-# profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'text/csv')
-# profile.set_preference('browser.download.useDownload.Dir', True)
-#
-# cls.driver = webdriver.Firefox(profile, executable_path='drivers/geckodriver.exe')
-# cls.driver = webdriver.Firefox(profile)
-
-# cls.driver = webdriver.Chrome(executable_path='drivers/chromedriver.exe')
