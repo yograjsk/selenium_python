@@ -4,19 +4,43 @@ from PageObjModelDemo.pages.login_page import Login_page
 from PageObjModelDemo.pages.home_page import Home_page
 import unittest
 
+'''
+normal methods - create object, call the method to run - this will work for all the methods
 
-class LoginTests():
+unittest - no need to create the object of the class, and not need to call the methods explicitly
+as soon you mention the "test" in prefix the method gets picked up for execution automatically
 
-    # @classmethod
-    # def setUpClass(self):
-    #     self.driver = webdriver.Chrome(executable_path='C:/Users/USER/PycharmProjects/sample/drivers/chromedriver.exe')
-    #     self.driver.maximize_window()
-    #     self.driver.implicitly_wait(5)
+'''
 
-    def test_validLogin(self):
+
+class LoginTests(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(self):
+        print("run only once before the first test method")
         self.driver = webdriver.Chrome(executable_path='C:/Users/USER/PycharmProjects/sample/drivers/chromedriver.exe')
         self.driver.maximize_window()
         self.driver.implicitly_wait(5)
+
+    def setUp(self):
+        print("runs before every test method")
+
+    def test1(self):
+        print("test1 method")
+
+    def test2(self):
+        print("test2 method")
+
+    def test3(self):
+        print("test3 method")
+
+    def logintest(self):
+        print("This is a login test scenario")
+
+    def _test_validLogin(self):
+        # self.driver = webdriver.Chrome(executable_path='C:/Users/USER/PycharmProjects/sample/drivers/chromedriver.exe')
+        # self.driver.maximize_window()
+        # self.driver.implicitly_wait(5)
         # driver = self.driver
         login = Login_page(self.driver)
         home = Home_page(self.driver)
@@ -41,8 +65,16 @@ class LoginTests():
         # self.driver.find_element(By.LINK_TEXT, "Logout").click()
         print("Valid Login Test Completed")
 
-lt = LoginTests()
-lt.test_validLogin()
+    @classmethod
+    def tearDownClass(cls):
+        print("runs after last test method")
+
+# lt = LoginTests()
+# lt.test_validLogin()
+
+if __name__ == '__main__':
+    unittest.main()
+
 
 
 
