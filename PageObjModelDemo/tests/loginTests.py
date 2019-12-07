@@ -1,16 +1,16 @@
+import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from PageObjModelDemo.pages.login_page import Login_page
 from PageObjModelDemo.pages.home_page import Home_page
-import unittest
 
 '''
 normal methods - create object, call the method to run - this will work for all the methods
 
 unittest - no need to create the object of the class, and not need to call the methods explicitly
 as soon you mention the "test" in prefix the method gets picked up for execution automatically
-
 '''
+
 
 
 class LoginTests(unittest.TestCase):
@@ -37,19 +37,22 @@ class LoginTests(unittest.TestCase):
     def logintest(self):
         print("This is a login test scenario")
 
-    def _test_validLogin(self):
+    def test_validLogin(self):
         # self.driver = webdriver.Chrome(executable_path='C:/Users/USER/PycharmProjects/sample/drivers/chromedriver.exe')
         # self.driver.maximize_window()
         # self.driver.implicitly_wait(5)
         # driver = self.driver
-        login = Login_page(self.driver)
-        home = Home_page(self.driver)
 
         self.driver.get("https://opensource-demo.orangehrmlive.com/index.php/auth/login")
+        login = Login_page(self.driver)
+
+        # with separate page objects way
         login.enter_username("admin")
         login.enter_password("admin123")
         login.click_login_button()
 
+
+        home = Home_page(self.driver)
         # self.driver.find_element(By.ID, "txtUsername").send_keys("admin")
         # self.driver.find_element_by_id("txtPassword").send_keys("admin123")
         # self.driver.find_element(By.ID, "btnLogin").click()
