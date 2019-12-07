@@ -3,9 +3,6 @@ from selenium.webdriver.common.by import By
 
 class Utils:
 
-    # def __init__(self, driver):
-    #     self.driver = driver
-
     def propertiesFileReader(self, filePath):
         properties = {}
 
@@ -13,9 +10,6 @@ class Utils:
             for line in f:
                 line = line.rstrip()
                 if ("=" not in line or line.startswith("#")): continue
-                # if "=" not in line: continue
-                # if line.startswith("#"): continue
-                # browser=ff
                 k, v = line.split("=", 1)
                 properties[k] = v
         print(properties)
@@ -33,7 +27,6 @@ class Utils:
 
 
     def enterTextToTextField(self, byValue, byLocatorValue, text, driver):
-    # def enterTextToTextField(self, byValue, byLocatorValue, text):
         if byValue is "id":
             driver.find_element(By.ID, byLocatorValue).send_keys(text)
         elif byValue is "class":
@@ -44,7 +37,6 @@ class Utils:
             driver.find_element(By.NAME, byLocatorValue).send_keys(text)
 
     def clickOnElement(self, byValue, byLocatorValue, driver):
-    # def clickOnElement(self, byValue, byLocatorValue):
         if byValue is "id":
             driver.find_element(By.ID, byLocatorValue).click()
         elif byValue is "class":
@@ -55,8 +47,6 @@ class Utils:
             driver.find_element(By.NAME, byLocatorValue).click()
 
     def checkElementPresent(self, byValue, byLocatorValue, driver):
-    # def checkElementPresent(self, byValue, byLocatorValue):
-        # check = None
         try:
             if byValue is "id":
                 return driver.find_element(By.ID, byLocatorValue).is_displayed()
@@ -68,9 +58,7 @@ class Utils:
                 return driver.find_element(By.NAME, byLocatorValue).is_displayed()
         except:
             return False
-        # return check
 
 
     def takeScreenshot(self, screenshotPath, driver):
-    # def takeScreenshot(self, screenshotPath):
         driver.save_screenshot(screenshotPath)
