@@ -1,12 +1,14 @@
-import unittest
 from PageObjModelDemo.ObjectRepository.ObjRepo import OR
 from PageObjModelDemo.Utilities.Utils import Utils
+import unittest
+import HtmlTestRunner
 
 
 class NewLoginTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        print("running tests from NewLoginTests class")
         cls.u = Utils()
         cls.config = cls.u.propertiesFileReader("../Configuration/config.properties")
         browser = cls.config["browserName"]
@@ -42,4 +44,5 @@ class NewLoginTests(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    # unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='C:/Users/USER/PycharmProjects/sample/PageObjModelDemo/reports'))
     unittest.main()

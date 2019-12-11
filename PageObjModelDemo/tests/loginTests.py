@@ -1,8 +1,8 @@
 import unittest
+import HtmlTestRunner
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from PageObjModelDemo.pages.login_page import Login_page
 from PageObjModelDemo.pages.home_page import Home_page
+from PageObjModelDemo.pages.login_page import Login_page
 
 '''
 normal methods - create object, call the method to run - this will work for all the methods
@@ -18,6 +18,7 @@ class LoginTests(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         print("run only once before the first test method")
+        print("Running Login Tests Class tests")
         self.driver = webdriver.Chrome(executable_path='C:/Users/USER/PycharmProjects/sample/drivers/chromedriver.exe')
         self.driver.maximize_window()
         self.driver.implicitly_wait(5)
@@ -76,7 +77,7 @@ class LoginTests(unittest.TestCase):
 # lt.test_validLogin()
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='htmlReport.html'))
 
 
 
